@@ -5,17 +5,18 @@ _keeps the KIRI server alive and some coffee for the maintainers_
 
 ## Installation Guide ##
 
+All guides in Ubuntu.
+
 1. Prepare one user and add to `sudo` group. Then login as that user.
-2. Install Java 7 (Ubuntu/Debian: `sudo apt-get install openjdk-7-jre`, CentOS: `sudo yum install java-1.7.0-openjdk`
-3. Install Git (Ubuntu/Debian: `sudo apt-get install git`, CentOS: `sudo yum install git`)
+2. Install Java 8 (`sudo apt install openjdk-8-jre openjdk-8-jdk`)
+3. Install Git (`sudo apt-get install git`)
 4. Clone repository (`git clone https://github.com/projectkiri/NewMenjangan.git`)
-5. Copy `newmjnserve` init file from `dist/etc/init.d` to `/etc/init.d` (`sudo cp NewMenjangan/dist/etc/init.d/newmjnserve.debian /etc/init.d/newmjnserve`)
-6. Update `/etc/init.d/newmjnserve`: edit `export NEWMJNSERVE_HOME=/vagrant/NewMenjangan` into your environment e.g.: `export NEWMJNSERVE_HOME=/home/pascal/newmenjangan/dist`
-7. Enable execute permission for this file (`sudo chmod 755 /etc/init.d/newmjnserve`)
-8. Register init script:
-    * In Debian/Ubuntu: `sudo /sbin/insserv /etc/init.d/newmjnserve` or `sudo /usr/lib/insserv/insserv /etc/init.d/newmjnserve`
-    * In CentOS: `sudo chkconfig --add newmjnserve
-9. You may want to start the service immediately (`sudo /etc/init.d/newmjnserve start`)
+5. Configure database parameter: set appropriate values in `~/NewMenjangan/dist/etc/mysql.properties`
+6. Test NewMenjangan that it is capable to run:
+    1. Update `dist/NewMenjangan.sh`, set the value of `NEWMJNSERVE_HOME` part into your own directory (Basically that's where your `NewMenjangan.sh` resides)
+    2. In `dist/`, type `./NewMenjangan.sh`
+    3. Type `Ctrl+C` to exit
+7. Register in cronjob to execute at start
 
 ## MySQL Server Installation ##
 
